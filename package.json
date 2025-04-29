@@ -30,6 +30,7 @@
     "react-redux": "^9.2.0",
     "react-redux-loading-bar": "^5.0.8",
     "react-router-dom": "6.19.0",
+    "start-server-and-test": "^2.0.11",
     "tailwindcss": "^4.1.4",
     "vitest": "^3.1.2"
   },
