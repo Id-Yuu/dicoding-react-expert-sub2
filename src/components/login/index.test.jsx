@@ -23,10 +23,10 @@ describe('LoginInput component', () => {
     const emailInput = await screen.getByPlaceholderText('Email');
 
     // Action
-    await userEvent.type(emailInput, 'dimas212@gmail.com');
+    await userEvent.type(emailInput, 'ayyub@mail.com');
 
     // Assert
-    expect(emailInput).toHaveValue('dimas212@gmail.com');
+    expect(emailInput).toHaveValue('ayyub@mail.com');
   });
 
   it('should handle password typing correctly', async () => {
@@ -39,10 +39,10 @@ describe('LoginInput component', () => {
     const passwordInput = await screen.getByPlaceholderText('Password');
 
     // Action
-    await userEvent.type(passwordInput, 'dimas212');
+    await userEvent.type(passwordInput, 'ayyub');
 
     // Assert
-    expect(passwordInput).toHaveValue('dimas212');
+    expect(passwordInput).toHaveValue('ayyub');
   });
 
   it('should call login function when login button is clicked', async () => {
@@ -54,9 +54,9 @@ describe('LoginInput component', () => {
       </MemoryRouter>,
     );
     const emailInput = await screen.getByPlaceholderText('Email');
-    await userEvent.type(emailInput, 'dimas212@gmail.com');
+    await userEvent.type(emailInput, 'ayyub@mail.com');
     const passwordInput = await screen.getByPlaceholderText('Password');
-    await userEvent.type(passwordInput, 'dimas212');
+    await userEvent.type(passwordInput, 'ayyub');
     const loginButton = await screen.getByRole('button', { name: 'Masuk' });
 
     // Action
@@ -64,8 +64,8 @@ describe('LoginInput component', () => {
 
     // Assert
     expect(mockLogin).toBeCalledWith({
-      email: 'dimas212@gmail.com',
-      password: 'dimas212',
+      email: 'ayyub@mail.com',
+      password: 'ayyub',
     });
   });
 });
