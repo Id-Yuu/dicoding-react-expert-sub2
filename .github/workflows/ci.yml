@@ -1,21 +1,24 @@
 name: Continuous Integration
  
 on:
-  pull_request:
-    branches:
-      - master
- 
+    push:
+        branches: [ "main" ]
+    pull_request:
+        branches: [ "main" ]
 jobs:
-  automation-test-job:
-    runs-on: ubuntu-latest
- 
-    steps:
-      - uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
-        with:
-          node-version: ${{ matrix.node-version }}
-      - name: npm install and test
-        run: |
-          npm install
-          npm run ci:test
+    test:
+        runs-on: ubuntu-latest
+
+        steps:
+        - uses: actions/checkout@v3
+        
+        - name: Setup Bun
+          uses: oven-sh/setup-bun@v1
+          with:
+            bun-version: latest
+                
+        - name: Install dependencies
+          run: bun install
+
+        - name: Run linting
+          run: bun run lint
