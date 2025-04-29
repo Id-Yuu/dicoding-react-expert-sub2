@@ -5,7 +5,7 @@ const useInputs = (defaultValue = '') => {
   const handleValueChange = ({ target }) => {
     setValue(target.value);
   };
-  return [value, handleValueChange, setValue];
+  return [value, handleValueChangeError, setValue];
 };
 
 export default useInputs;
