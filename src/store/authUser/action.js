@@ -1,5 +1,5 @@
 import { hideLoading, showLoading } from 'react-redux-loading-bar';
-import api from '@utils/api';
+import api from '../../utils/api';
 
 const ActionType = {
   SET_AUTH_USER: 'SET_AUTH_USER',

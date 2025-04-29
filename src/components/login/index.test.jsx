@@ -2,8 +2,11 @@ import { describe, it, expect, afterEach, vi } from 'vitest';
 import { render, screen, cleanup } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
+import matchers from '@testing-library/jest-dom/matchers';
 import { MemoryRouter } from 'react-router-dom';
 import LoginInput from './index';
+
+expect.extend(matchers);
 
 describe('LoginInput component', () => {
   afterEach(() => {
@@ -15,15 +18,15 @@ describe('LoginInput component', () => {
     render(
       <MemoryRouter>
         <LoginInput login={() => {}} />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
-    const emailInput = screen.getByPlaceholderText('Email');
+    const emailInput = await screen.getByPlaceholderText('Email');
 
     // Action
-    await userEvent.type(emailInput, 'ayyub@test.com');
+    await userEvent.type(emailInput, 'dimas212@gmail.com');
 
     // Assert
-    expect(emailInput).toHaveValue('ayyub@test.com');
+    expect(emailInput).toHaveValue('dimas212@gmail.com');
   });
 
   it('should handle password typing correctly', async () => {
@@ -31,15 +34,15 @@ describe('LoginInput component', () => {
     render(
       <MemoryRouter>
         <LoginInput login={() => {}} />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
     const passwordInput = await screen.getByPlaceholderText('Password');
 
     // Action
-    await userEvent.type(passwordInput, 'password123');
+    await userEvent.type(passwordInput, 'dimas212');
 
     // Assert
-    expect(passwordInput).toHaveValue('password123');
+    expect(passwordInput).toHaveValue('dimas212');
   });
 
   it('should call login function when login button is clicked', async () => {
@@ -48,21 +51,21 @@ describe('LoginInput component', () => {
     render(
       <MemoryRouter>
         <LoginInput login={mockLogin} />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
     const emailInput = await screen.getByPlaceholderText('Email');
-    await userEvent.type(emailInput, 'ayyub@test.com');
+    await userEvent.type(emailInput, 'dimas212@gmail.com');
     const passwordInput = await screen.getByPlaceholderText('Password');
-    await userEvent.type(passwordInput, 'password123');
-    const loginButton = await screen.getByRole('button', { name: 'Login' });
+    await userEvent.type(passwordInput, 'dimas212');
+    const loginButton = await screen.getByRole('button', { name: 'Masuk' });
 
     // Action
     await userEvent.click(loginButton);
 
     // Assert
     expect(mockLogin).toBeCalledWith({
-      email: 'ayyub@test.com',
-      password: 'password123'
+      email: 'dimas212@gmail.com',
+      password: 'dimas212',
     });
   });
 });

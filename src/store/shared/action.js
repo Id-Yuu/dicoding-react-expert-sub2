@@ -1,7 +1,7 @@
 import { hideLoading, showLoading } from 'react-redux-loading-bar';
-import api from '@utils/api';
-import { getUsersData } from '@store/users/action';
-import { fetchThreadsUsers } from '@store/threads/action';
+import api from '../../utils/api';
+import { getUsersData } from '../users/action';
+import { fetchThreadsUsers } from '../threads/action';
 
 const fetchAllLeaderBoards = () => {
   return async (dispatch) => {
