@@ -1,8 +1,8 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { hideLoading, showLoading } from 'react-redux-loading-bar';
-import api from '../../utils/api';
-import { getUsersData } from '../users/action';
-import { fetchThreadsUsers } from '../threads/action';
+import api from '@utils/api';
+import { getUsersData } from '@store/users/action';
+import { fetchThreadsUsers } from '@store/threads/action';
 import fetchAllLeaderBoards from './action';
 
 
@@ -20,18 +20,18 @@ vi.mock('react-redux-loading-bar', () => ({
   hideLoading: vi.fn()
 }));
 
-vi.mock('../../utils/api', () => ({
+vi.mock('@utils/api', () => ({
   default: {
     getAllUsers: vi.fn(),
     getAllThreads: vi.fn()
   }
 }));
 
-vi.mock('../users/action.js', () => ({
+vi.mock('@store/users/action.js', () => ({
   getUsersData: vi.fn()
 }));
 
-vi.mock('../threads/action', () => ({
+vi.mock('@store/threads/action', () => ({
   fetchThreadsUsers: vi.fn()
 }));
 
