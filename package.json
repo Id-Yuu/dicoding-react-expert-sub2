@@ -13,7 +13,9 @@
     "test:watch": "vitest --watch",
     "e2e": "cypress run",
     "cy:open": "cypress open",
-    "ci:test": "vitest --no-watch && start-server-and-test dev http://localhost:5173/ e2e"
+    "ci:test": "vitest --no-watch && start-server-and-test dev http://localhost:5173/ e2e",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.7.0",
@@ -34,8 +36,16 @@
     "vitest": "^3.1.2"
   },
   "devDependencies": {
+    "@chromatic-com/storybook": "^3.2.6",
     "@eslint/config-helpers": "^0.2.1",
     "@eslint/js": "^9.24.0",
+    "@storybook/addon-essentials": "^8.6.12",
+    "@storybook/addon-onboarding": "^8.6.12",
+    "@storybook/blocks": "^8.6.12",
+    "@storybook/experimental-addon-test": "^8.6.12",
+    "@storybook/react": "^8.6.12",
+    "@storybook/react-vite": "^8.6.12",
+    "@storybook/test": "^8.6.12",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",
@@ -43,6 +53,8 @@
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
     "@vitejs/plugin-react": "^4.3.4",
+    "@vitest/browser": "^3.1.2",
+    "@vitest/coverage-v8": "^3.1.2",
     "eslint": "^8.0.1",
     "eslint-config-dicodingacademy": "^0.9.4",
     "eslint-config-standard": "^17.1.0",
@@ -52,8 +64,16 @@
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.19",
+    "eslint-plugin-storybook": "^0.12.0",
     "globals": "^16.0.0",
     "jsdom": "^26.1.0",
+    "playwright": "^1.52.0",
+    "storybook": "^8.6.12",
     "vite": "^6.3.1"
+  },
+  "eslintConfig": {
+    "extends": [
+      "plugin:storybook/recommended"
+    ]
   }
 }
