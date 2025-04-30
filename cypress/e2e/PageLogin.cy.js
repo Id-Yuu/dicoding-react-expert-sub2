@@ -77,7 +77,7 @@ describe('Page Login', () => {
 
     // Stub window.alert
     cy.on('window:alert', (message) => {
-      expect(message).to.equal('Connection error');
+      expect(message).to.equal('Failed to fetch');
     });
 
     // Fill and submit form

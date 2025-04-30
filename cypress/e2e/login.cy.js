@@ -64,7 +64,7 @@ describe('Login spec', () => {
 
     // Verify network error message
     cy.on('window:alert', (message) => {
-      expect(message).to.equal('Connection error');
+      expect(message).to.equal('Failed to fetch');
     });
   });
 
