@@ -16,10 +16,11 @@ export default defineConfig({
     },
   },
   test: {
-    environment: 'node',
+    environment: 'jsdom',
     globals: true,
     setupFiles: './src/utils/setupTests.js',
     include: ['src/**/*.{test,spec}.{js,jsx}'],
+    exclude: ['**/node_modules/**', '**/.{idea,git}/**', '**/*.stories.@(js|jsx|mjs|ts|tsx)'],
     coverage: {
       provider: 'v8',
       reporter: ['text', 'json', 'html'],
