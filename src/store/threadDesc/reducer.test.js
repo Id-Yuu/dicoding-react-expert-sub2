@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import threadDetailReducer from './reducer';
 import { ActionType } from './action';
+import '@testing-library/jest-dom';
 
 describe('threadDetailReducer', () => {
   const initialState = null;

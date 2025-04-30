@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import authUserReducer from './reducer';
+import '@testing-library/jest-dom';
 import { ActionType } from './action';
 
 // - Initial state handling
