@@ -19,4 +19,5 @@ jobs:
       - name: npm install and test
         run: |
           npm install --legacy-peer-deps
+          npx playwright install
           npm run ci:test
