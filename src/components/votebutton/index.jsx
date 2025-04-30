@@ -52,19 +52,21 @@ export const VoteButton = ({
     <div className="vote-button">
       <button
         type="button"
+        aria-label='upvote'
         onClick={handleVoteClick(isUpVoted ? 'neutral' : 'up')}
       >
         <ArrowUpIcon />
       </button>
-      <span>{upVotesBy.length}, </span>
+      <span data-testid="upvote-count">{upVotesBy.length}, </span>
 
       <button
         type="button"
+        aria-label='downvote'
         onClick={handleVoteClick(isDownVoted ? 'neutral' : 'down')}
       >
         <ArrowDownIcon />
       </button>
-      <span>{downVotesBy.length}</span>
+      <span data-testid="downvote-count">{downVotesBy.length}</span>
     </div>
   );
 };

@@ -1,12 +1,12 @@
 import { ActionType } from './action';
 
 const leaderboardsReducer = (leaderboards = [], action = {}) => {
-  const handlers = {
-    [ActionType.RECEIVE_LEADERBOARDS]: () => action.payload.leaderboards,
-    default: () => leaderboards
-  };
-
-  return (handlers[action.type] || handlers.default)();
+  switch (action.type) {
+  case 'RECEIVE_LEADERBOARDS':
+    return action.payload?.leaderboards ?? leaderboards;
+  default:
+    return leaderboards;
+  }
 };
 
 export default leaderboardsReducer;
