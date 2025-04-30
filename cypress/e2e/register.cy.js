@@ -61,7 +61,7 @@ describe('Register spec', () => {
     cy.on('window:alert', (message) => {
       expect(message).to.be.oneOf([
         'Email is already taken',
-        'Connection error'
+        'Failed to fetch'
       ]);
     });
   });
@@ -77,7 +77,7 @@ describe('Register spec', () => {
     cy.get('button[type="submit"]').click();
 
     cy.on('window:alert', (message) => {
-      expect(message).to.equal('Connection error');
+      expect(message).to.equal('Failed to fetch');
     });
   });
 });

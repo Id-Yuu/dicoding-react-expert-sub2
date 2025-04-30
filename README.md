@@ -4,6 +4,9 @@ Submission 2 React Web Developer Expert, <br/> Proyek: Membangun Aplikasi React 
 
 ```
 npm install
+or
+npm install --legacy-peer-deps
+
 npm run dev
 ```
 

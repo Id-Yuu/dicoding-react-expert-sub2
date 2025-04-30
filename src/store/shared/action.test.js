@@ -4,6 +4,7 @@ import api from '@utils/api';
 import { getUsersData } from '@store/users/action';
 import { fetchThreadsUsers } from '@store/threads/action';
 import fetchAllLeaderBoards from './action';
+import '@testing-library/jest-dom';
 
 
 // - Mocks all external dependencies

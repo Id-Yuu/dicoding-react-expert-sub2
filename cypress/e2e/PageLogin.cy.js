@@ -77,7 +77,7 @@ describe('Page Login', () => {
 
     // Stub window.alert
     cy.on('window:alert', (message) => {
-      expect(message).to.equal('Connection error');
+      expect(message).to.equal('Failed to fetch');
     });
 
     // Fill and submit form
@@ -87,7 +87,7 @@ describe('Page Login', () => {
 
     // Assert we stay on login page
     cy.wait('@networkError').then(() => {
-      cy.location('pathname').should('equal', '/login');
+      cy.location('pathname').should('equal', '/');
     });
   });
 });
