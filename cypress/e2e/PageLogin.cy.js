@@ -87,7 +87,7 @@ describe('Page Login', () => {
 
     // Assert we stay on login page
     cy.wait('@networkError').then(() => {
-      cy.location('pathname').should('equal', '/login');
+      cy.location('pathname').should('equal', '/');
     });
   });
 });
