@@ -5,6 +5,9 @@ import '@testing-library/jest-dom';
 import { VoteButton } from './index';
 
 describe('VoteButton Component', () => {
+  // Initial Setup
+  // Sets up default props with mock functions
+  // Clears mocks before each test
   const defaultProps = {
     id: 'vote-1',
     upVote: vi.fn(),
@@ -20,22 +23,27 @@ describe('VoteButton Component', () => {
   });
 
   it('should render vote button correctly', () => {
-    // Arrange
+    // Basic Rendering Test
     render(<VoteButton {...defaultProps} />);
 
-    // Assert
+    // Upvote button exists
+    // Downvote button exists
+    // Initial vote count (0) is displayed
+    // All elements are accessible
     expect(screen.getByLabelText('upvote')).toBeInTheDocument();
     expect(screen.getByLabelText('downvote')).toBeInTheDocument();
     expect(screen.getByText('0')).toBeInTheDocument(); // votes count
   });
 
   it('should handle upvote click correctly when not upvoted', async () => {
-    // Arrange
+    // Upvote Functionality
     const user = userEvent.setup();
     render(<VoteButton {...defaultProps} />);
     const upvoteButton = screen.getByLabelText('upvote');
 
-    // Act
+    // Clicking upvote button
+    // Proper function call with correct ID
+    // No other vote functions called
     await user.click(upvoteButton);
 
     // Assert
@@ -45,12 +53,14 @@ describe('VoteButton Component', () => {
   });
 
   it('should handle downvote click correctly when not downvoted', async () => {
-    // Arrange
+    // Downvote Functionality
     const user = userEvent.setup();
     render(<VoteButton {...defaultProps} />);
     const downvoteButton = screen.getByLabelText('downvote');
 
-    // Act
+    // Clicking downvote button
+    // Proper function call with correct ID
+    // No other vote functions called
     await user.click(downvoteButton);
 
     // Assert
@@ -60,7 +70,7 @@ describe('VoteButton Component', () => {
   });
 
   it('should neutralize vote when clicking upvote button while already upvoted', async () => {
-    // Arrange
+    // Vote Neutralization (Upvote)
     const user = userEvent.setup();
     const props = {
       ...defaultProps,
@@ -69,7 +79,9 @@ describe('VoteButton Component', () => {
     render(<VoteButton {...props} />);
     const upvoteButton = screen.getByLabelText('upvote');
 
-    // Act
+    // Already upvoted state
+    // Clicking upvote again neutralizes
+    // Correct neutralize function called
     await user.click(upvoteButton);
 
     // Assert
@@ -79,7 +91,7 @@ describe('VoteButton Component', () => {
   });
 
   it('should neutralize vote when clicking downvote button while already downvoted', async () => {
-    // Arrange
+    // Vote Neutralization (Downvote)
     const user = userEvent.setup();
     const props = {
       ...defaultProps,
@@ -88,7 +100,9 @@ describe('VoteButton Component', () => {
     render(<VoteButton {...props} />);
     const downvoteButton = screen.getByLabelText('downvote');
 
-    // Act
+    // Already downvoted state
+    // Clicking downvote again neutralizes
+    // Correct neutralize function called
     await user.click(downvoteButton);
 
     // Assert
@@ -98,14 +112,16 @@ describe('VoteButton Component', () => {
   });
 
   it('should display correct vote counts', () => {
-    // Arrange
+    // Vote Count Display
     const props = {
       ...defaultProps,
-      upVotesBy: ['user-1', 'user-2'],
-      downVotesBy: ['user-3'],
+      upVotesBy: ['user-1', 'user-2'], // 2 upvotes
+      downVotesBy: ['user-3'], // 1 downvote
     };
 
-    // Act
+    // Correct upvote count display (2)
+    // Correct downvote count display (1)
+    // Uses test IDs for reliable querying
     render(<VoteButton {...props} />);
 
     // Assert

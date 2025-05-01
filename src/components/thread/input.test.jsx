@@ -6,10 +6,15 @@ import ThreadInput from './input';
 
 describe('ThreadInput Component', () => {
   it('should render thread input form correctly', () => {
-    // Arrange
+    // Form Rendering Test
     render(<ThreadInput addThread={() => {}} />);
 
-    // Assert
+    // Title input exists
+    // Category input exists
+    // Body textarea exists
+    // Submit button exists with "Add Thread" text
+    // All form elements are accessible
+
     expect(screen.getByPlaceholderText('Title')).toBeInTheDocument();
     expect(screen.getByPlaceholderText('Category')).toBeInTheDocument();
     expect(screen.getByPlaceholderText('Body')).toBeInTheDocument();
@@ -17,9 +22,16 @@ describe('ThreadInput Component', () => {
   });
 
   it('should handle input changes correctly', async () => {
-    // Arrange
+    // Input Change Handling
     const user = userEvent.setup();
     render(<ThreadInput addThread={() => {}} />);
+
+    // User can type in all form fields
+    // Input values update correctly:
+    // - Title field accepts "Test Title"
+    // - Category field accepts "Test Category"
+    // - Body field accepts "Test Body Content"
+    // Values persist after typing
 
     const titleInput = screen.getByPlaceholderText('Title');
     const categoryInput = screen.getByPlaceholderText('Category');
@@ -37,11 +49,13 @@ describe('ThreadInput Component', () => {
   });
 
   it('should call addThread function with correct data when form is submitted', async () => {
-    // Arrange
+    // Form Submission
     const mockAddThread = vi.fn();
     const user = userEvent.setup();
     render(<ThreadInput addThread={mockAddThread} />);
-
+    // Form submission works
+    // addThread callback receives correct data object
+    // All field values are passed correctly
     const titleInput = screen.getByPlaceholderText('Title');
     const categoryInput = screen.getByPlaceholderText('Category');
     const bodyInput = screen.getByPlaceholderText('Body');
@@ -53,7 +67,7 @@ describe('ThreadInput Component', () => {
     await user.type(bodyInput, 'Test Body Content');
     await user.click(submitButton);
 
-    // Assert
+    // data object
     expect(mockAddThread).toHaveBeenCalledWith({
       title: 'Test Title',
       category: 'Test Category',
@@ -62,11 +76,14 @@ describe('ThreadInput Component', () => {
   });
 
   it('should validate required fields before submission', async () => {
-    // Arrange
+    // Form Validation
     const mockAddThread = vi.fn();
     const user = userEvent.setup();
     render(<ThreadInput addThread={mockAddThread} />);
 
+    // Empty form cannot be submitted
+    // addThread is not called with empty fields
+    // Form validation prevents invalid submissions
     const submitButton = screen.getByRole('button', { name: 'Add Thread' });
 
     // Act

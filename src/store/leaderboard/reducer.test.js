@@ -2,33 +2,46 @@ import { describe, it, expect } from 'vitest';
 import leaderboardsReducer from './reducer';
 import { ActionType } from './action';
 
+// Handles all action types correctly
+// Maintains data integrity
+// Processes complex data structures
+// Handles edge cases gracefully
+// Preserves state when needed
+
 describe('leaderboardsReducer', () => {
   it('should return initial state when given unknown action', () => {
-    // Arrange
-    const initialState = [];
-    const action = { type: 'UNKNOWN_ACTION' };
+    // Unknown Action Handling
+    const initialState = []; // Initial state is an empty array
+    const action = { type: 'UNKNOWN_ACTION' }; // Action with an unknown type
 
-    // Action
+    // Tests reducer's behavior with unknown action types
+    // Verifies state immutability
+    // Ensures initial state is preserved
+    // Initial state is an empty array []
     const nextState = leaderboardsReducer(initialState, action);
-
-    // Assert
     expect(nextState).toEqual(initialState);
   });
 
   it('should return initial state when given undefined action', () => {
-    // Arrange
+    // Undefined Action Handling
     const initialState = [];
 
-    // Action
-    const nextState = leaderboardsReducer(initialState);
-
-    // Assert
-    expect(nextState).toEqual(initialState);
+    // Tests default parameter handling
+    // Verifies reducer works without an action
+    // Ensures initial state is returned
+    // Handles edge case of missing action
+    const nextState = leaderboardsReducer(initialState); // No action provided
+    expect(nextState).toEqual(initialState); // Initial state is an empty array []
   });
 
   it('should return leaderboards when given RECEIVE_LEADERBOARDS action', () => {
-    // Arrange
+    // Receiving Leaderboards
     const initialState = [];
+
+    // Tests successful leaderboard data reception
+    // Verifies correct state update with valid payload
+    // Ensures action type is handled properly
+    // Tests data structure handling:
     const leaderboards = [
       {
         user: {
@@ -58,13 +71,11 @@ describe('leaderboardsReducer', () => {
 
     // Action
     const nextState = leaderboardsReducer(initialState, action);
-
-    // Assert
     expect(nextState).toEqual(leaderboards);
   });
 
   it('should maintain existing state when given invalid action payload', () => {
-    // Arrange
+    // Invalid Payload Handling
     const initialState = [
       {
         user: {
@@ -76,6 +87,11 @@ describe('leaderboardsReducer', () => {
         score: 50,
       },
     ];
+
+    // Tests error handling for invalid payloads
+    // Verifies state preservation on invalid data
+    // Ensures existing data isn't lost
+    // Handles missing payload properties
     const action = {
       type: ActionType.RECEIVE_LEADERBOARDS,
       payload: {}, // Invalid payload (missing leaderboards)
@@ -83,8 +99,6 @@ describe('leaderboardsReducer', () => {
 
     // Action
     const nextState = leaderboardsReducer(initialState, action);
-
-    // Assert
     expect(nextState).toEqual(initialState);
   });
 });

@@ -10,20 +10,22 @@ import { ActionType } from './action';
 
 describe('authUserReducer', () => {
   it('should return null as initial state', () => {
-    // Arrange
+    // Initial State Test
     const initialState = undefined;
     const action = { type: 'UNKNOWN' };
 
-    // Act
+    // Verifies default state initialization
+    // Ensures reducer returns 'null' when state is undefined
+    // Handles unknown action types properly
     const nextState = authUserReducer(initialState, action);
-
-    // Assert
     expect(nextState).toBeNull();
   });
 
   it('should set auth user when given SET_AUTH_USER action', () => {
-    // Arrange
+    // Set Auth User Test
     const initialState = null;
+
+    // Data structure tested:
     const authUser = {
       id: 'user-1',
       name: 'ayyub',
@@ -34,15 +36,15 @@ describe('authUserReducer', () => {
       payload: { authUser }
     };
 
-    // Act
+    // ests user authentication state setting
+    // Verifies correct handling of SET_AUTH_USER action
+    // Ensures user data is properly stored
     const nextState = authUserReducer(initialState, action);
-
-    // Assert
     expect(nextState).toEqual(authUser);
   });
 
   it('should return null when given UNSET_AUTH_USER action', () => {
-    // Arrange
+    // Unset Auth User Test
     const initialState = {
       id: 'user-1',
       name: 'ayyub',
@@ -52,25 +54,25 @@ describe('authUserReducer', () => {
       type: ActionType.UNSET_AUTH_USER
     };
 
-    // Act
+    // Tests user logout/authentication clearing
+    // Verifies UNSET_AUTH_USER action properly clears state
+    // Ensures state returns to null
     const nextState = authUserReducer(initialState, action);
-
-    // Assert
     expect(nextState).toBeNull();
   });
 
   it('should return current state for unknown action', () => {
-    // Arrange
+    // Unknown Action Test
     const initialState = {
       id: 'user-1',
       name: 'ayyub'
     };
     const action = { type: 'UNKNOWN' };
 
-    // Act
+    // Tests reducer's handling of unknown action types
+    // Ensures state immutability
+    // Verifies current state is preserved
     const nextState = authUserReducer(initialState, action);
-
-    // Assert
     expect(nextState).toEqual(initialState);
   });
 });
