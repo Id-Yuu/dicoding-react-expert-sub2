@@ -11,55 +11,60 @@ describe('LoginInput Component', () => {
   });
 
   it('should render login form correctly', () => {
-    // Arrange
+    // Basic Rendering Test
     render(
       <MemoryRouter>
         <LoginInput login={() => {}} />
       </MemoryRouter>
     );
 
-    // Assert
+    // - Email input field exists and is labeled
+    // - Password input field exists and is labeled
+    // - Login button exists with correct text
+    // - All required form elements are present
     expect(screen.getByLabelText('Email')).toBeInTheDocument();
     expect(screen.getByLabelText('Password')).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Login' })).toBeInTheDocument();
   });
 
   it('should handle email input correctly', async () => {
-    // Arrange
+    // Email Input Handling
     const user = userEvent.setup();
     render(
       <MemoryRouter>
         <LoginInput login={() => {}} />
       </MemoryRouter>
     );
+
+    // - User can type in email field
+    // - Email input value updates correctly
+    // - Input maintains typed value
+    // - Uses async/await for user interactions
     const emailInput = screen.getByLabelText('Email');
-
-    // Act
     await user.type(emailInput, 'test@example.com');
-
-    // Assert
     expect(emailInput).toHaveValue('test@example.com');
   });
 
   it('should handle password input correctly', async () => {
-    // Arrange
+    // Password Input Handling
     const user = userEvent.setup();
     render(
       <MemoryRouter>
         <LoginInput login={() => {}} />
       </MemoryRouter>
     );
+
+    // - User can type in password field
+    // - Password input value updates correctly
+    // - Input maintains typed value
+    // - Uses async/await for user interactions
     const passwordInput = screen.getByLabelText('Password');
-
-    // Act
     await user.type(passwordInput, 'password123');
-
-    // Assert
     expect(passwordInput).toHaveValue('password123');
   });
 
   it('should call login function with correct data on form submission', async () => {
-    // Arrange
+    // Form Submission
     const mockLogin = vi.fn();
     const user = userEvent.setup();
     render(
@@ -67,7 +72,10 @@ describe('LoginInput Component', () => {
         <LoginInput login={mockLogin} />
       </MemoryRouter>
     );
-
+    // - Form can be submitted
+    // - Login callback is called with correct data
+    // - Email and password are passed correctly
+    // - Form submission works with valid data
     const emailInput = screen.getByLabelText('Email');
     const passwordInput = screen.getByLabelText('Password');
     const submitButton = screen.getByRole('button', { name: 'Login' });
@@ -85,7 +93,7 @@ describe('LoginInput Component', () => {
   });
 
   it('should validate required fields before submission', async () => {
-    // Arrange
+    // Form Validation
     const mockLogin = vi.fn();
     const user = userEvent.setup();
     render(
@@ -94,6 +102,9 @@ describe('LoginInput Component', () => {
       </MemoryRouter>
     );
 
+    // - Empty form cannot be submitted
+    // - Login callback is not called with empty fields
+    // - Form validation works as expected
     const submitButton = screen.getByRole('button', { name: 'Login' });
 
     // Act

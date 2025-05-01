@@ -3,7 +3,15 @@ import threadDetailReducer from './reducer';
 import { ActionType } from './action';
 import '@testing-library/jest-dom';
 
+// Maintains data integrity
+// Handles all actions correctly
+// Manages nested state updates
+// Processes votes properly
+// Handles comments effectively
+
 describe('threadDetailReducer', () => {
+  // Initial Setup
+  // - Sets up test data fixtures and initial state
   const initialState = null;
   const mockThreadDetail = {
     id: 'thread-1',
@@ -21,8 +29,11 @@ describe('threadDetailReducer', () => {
     ]
   };
 
-  // - Initial state handling
+  // - Unknown Action Test
   it('should return initial state when given unknown action', () => {
+    // Tests reducer behavior with unknown actions
+    // Verifies state immutability
+    // Ensures initial state preservation
     const action = { type: 'UNKNOWN' };
     const nextState = threadDetailReducer(initialState, action);
     expect(nextState).toBe(initialState);
@@ -30,6 +41,9 @@ describe('threadDetailReducer', () => {
 
   // - Thread detail receiving
   it('should return thread detail when given RECEIVE_THREAD_DETAIL action', () => {
+    // Tests thread detail data reception
+    // Verifies correct state update
+    // Validates data structure handling
     const action = {
       type: ActionType.RECEIVE_THREAD_DETAIL,
       payload: { threadDetail: mockThreadDetail }
@@ -38,7 +52,11 @@ describe('threadDetailReducer', () => {
     expect(nextState).toEqual(mockThreadDetail);
   });
 
-  // - Thread voting (up/down/neutral)
+  // Thread voting (up/down/neutral)
+  // - Tests upvoting functionality
+  // - Tests downvoting functionality
+  // - Tests vote neutralization
+  // - Verifies vote arrays management
   it('should handle UP_VOTE_THREAD_DETAIL correctly', () => {
     const action = {
       type: ActionType.UP_VOTE_THREAD_DETAIL,
@@ -69,7 +87,10 @@ describe('threadDetailReducer', () => {
     expect(nextState.downVotesBy).not.toContain('user-1');
   });
 
-  // - Comment creation
+  // Comment creation
+  // - Tests adding new comments
+  // - Verifies comment data structure
+  // - Ensures proper comment integration
   it('should handle CREATE_COMMENT correctly', () => {
     const newComment = {
       id: 'comment-2',
@@ -83,7 +104,11 @@ describe('threadDetailReducer', () => {
     expect(nextState.comments[0]).toEqual(newComment);
   });
 
-  // - Comment voting
+  // Comment voting
+  // - Tests comment upvoting
+  // - Tests comment downvoting
+  // - Tests comment vote neutralization
+  // - Verifies comment vote state management
   it('should handle comment votes correctly', () => {
     // Test upvote comment
     const upvoteAction = {
