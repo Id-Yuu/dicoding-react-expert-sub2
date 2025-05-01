@@ -25,6 +25,12 @@ npm run dev
 npm run test
 ```
 
+## Eslint
+```
+npm run lint
+npm run lint:fix
+```
+
 ## Fitur
 - eslint-config-dicodingacademy
 - react router
