@@ -9,7 +9,7 @@ describe('LoginInput Component', () => {
   afterEach(() => {
     cleanup();
   });
-
+  // Tests basic form rendering (inputs, labels, button)
   it('should render login form correctly', () => {
     // Basic Rendering Test
     render(
@@ -27,6 +27,7 @@ describe('LoginInput Component', () => {
     expect(screen.getByRole('button', { name: 'Login' })).toBeInTheDocument();
   });
 
+  // Tests email input field functionality
   it('should handle email input correctly', async () => {
     // Email Input Handling
     const user = userEvent.setup();
@@ -45,6 +46,7 @@ describe('LoginInput Component', () => {
     expect(emailInput).toHaveValue('test@example.com');
   });
 
+  // Tests password input field functionality
   it('should handle password input correctly', async () => {
     // Password Input Handling
     const user = userEvent.setup();
@@ -63,6 +65,7 @@ describe('LoginInput Component', () => {
     expect(passwordInput).toHaveValue('password123');
   });
 
+  // Tests form submission with valid data
   it('should call login function with correct data on form submission', async () => {
     // Form Submission
     const mockLogin = vi.fn();
@@ -92,6 +95,7 @@ describe('LoginInput Component', () => {
     });
   });
 
+  // Tests form validation for empty fields
   it('should validate required fields before submission', async () => {
     // Form Validation
     const mockLogin = vi.fn();
