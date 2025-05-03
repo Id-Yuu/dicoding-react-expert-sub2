@@ -2,9 +2,6 @@
 
 Submission 2 React Web Developer Expert, <br/> Proyek: Membangun Aplikasi React dengan Redux
 
-Deploy 
-- https://ayyub-dicoding-react-expert-sub2.vercel.app/
-
 ```
 npm install
 or
